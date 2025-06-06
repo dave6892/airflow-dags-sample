@@ -1,18 +1,29 @@
 import os
 from pathlib import Path
+import glob
 
 # The following import is here so Airflow parses this file
 # from airflow import DAG
 import dagfactory
 
 DEFAULT_CONFIG_ROOT_DIR = "/opt/airflow/dags/"
-
 CONFIG_ROOT_DIR = Path(os.getenv("CONFIG_ROOT_DIR", DEFAULT_CONFIG_ROOT_DIR))
 
-config_file = str(CONFIG_ROOT_DIR / "example_dag.yml")
+# Create a list to store all DAG factories
+dag_factories = []
 
-example_dag_factory = dagfactory.DagFactory(config_file)
+# Get all YAML files in the directory
+yaml_files = glob.glob(str(CONFIG_ROOT_DIR / "*.yml"))
 
-# Creating task dependencies
-example_dag_factory.clean_dags(globals())
-example_dag_factory.generate_dags(globals())
+# Create DAG factories for each YAML file
+for config_file in yaml_files:
+    dag_factory = dagfactory.DagFactory(config_file)
+    dag_factories.append(dag_factory)
+
+# Clean DAGs once at the start
+if dag_factories:
+    dag_factories[0].clean_dags(globals())
+
+# Generate all DAGs
+for factory in dag_factories:
+    factory.generate_dags(globals())

@@ -1,9 +1,9 @@
 default:
   default_args:
     catchup: false
-    start_date: 2024-11-11
+    start_date: 2025-06-06
 
-basic_example_dag:
+example_dag_2:
   default_args:
     owner: "dave6892"
   description: "this is an example dag"
