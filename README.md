@@ -27,6 +27,7 @@ This project showcases how to build scalable Apache Airflow workflows using YAML
 │   ├── example_dag_2.yml       # DAG configuration (runs at 2 AM)
 │   └── example_dag_3.yml       # DAG configuration (runs at 3 AM)
 ├── .pre-commit-config.yaml     # Code quality automation
+├── Makefile                    # Development workflow automation
 ├── pyproject.toml              # Python dependencies
 └── README.md
 ```
@@ -62,6 +63,13 @@ This project showcases how to build scalable Apache Airflow workflows using YAML
    ```
 
 4. **Start the Airflow environment**:
+
+   **Option A: Using Makefile (Recommended)**:
+   ```bash
+   make airflow-up
+   ```
+
+   **Option B: Using Docker Compose directly**:
    ```bash
    cd .dev
    docker-compose up -d
@@ -116,6 +124,56 @@ The project includes three sample DAGs:
 - **example_dag_3**: Runs daily at 3:00 AM
 
 Each DAG demonstrates a simple workflow with three bash tasks showing task dependencies.
+
+## Makefile Commands
+
+This project includes a comprehensive Makefile to streamline development workflows. Here are the most commonly used commands:
+
+### Quick Setup
+```bash
+make setup          # Complete project setup (uv + pre-commit)
+make setup-pip      # Complete project setup using pip
+make dev-start      # Setup and start complete development environment
+```
+
+### Airflow Operations
+```bash
+make airflow-up     # Start Airflow development environment
+make airflow-down   # Stop Airflow development environment
+make airflow-restart # Restart Airflow services
+make airflow-logs   # View all Airflow logs
+make airflow-status # Check status of Airflow services
+make airflow-shell  # Open shell in Airflow container
+```
+
+### Code Quality
+```bash
+make lint           # Run linting checks
+make format         # Format code
+make lint-fix       # Auto-fix linting issues
+make check          # Run all quality checks (lint + format + test)
+make fix            # Fix all code issues and format
+```
+
+### Testing
+```bash
+make test           # Run tests
+make test-cov       # Run tests with coverage
+make test-verbose   # Run tests with verbose output
+```
+
+### Cleanup
+```bash
+make clean          # Clean temporary files and caches
+make clean-all      # Clean everything including Docker resources
+make dev-reset      # Reset and restart development environment
+```
+
+### Help
+```bash
+make help           # Show all available commands
+make                # Default target (shows help)
+```
 
 ## Development
 
