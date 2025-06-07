@@ -221,7 +221,7 @@ ENVIRONMENT=development
 
 ### DAG Factory Configuration
 
-Refer to the [dag-factory documentation](https://dag-factory.readthedocs.io/) for advanced configuration options.
+Refer to the [dag-factory documentation](https://astronomer.github.io/dag-factory/latest/getting-started/quick-start-airflow-standalone/) for advanced configuration options.
 
 ## Known Limitations
 
@@ -244,5 +244,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Resources
 
 - [Apache Airflow Documentation](https://airflow.apache.org/docs/)
-- [dag-factory Documentation](https://dag-factory.readthedocs.io/)
+- [dag-factory Documentation](https://astronomer.github.io/dag-factory/latest/getting-started/quick-start-airflow-standalone/)
 - [Docker Compose for Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html)
